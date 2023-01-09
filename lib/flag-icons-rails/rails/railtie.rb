@@ -6,7 +6,9 @@ module FlagIconsRails
   module Rails
     class Railtie < ::Rails::Railtie
       initializer 'flag-icons-rails.view_helpers' do
-        ActionView::Base.send :include, ViewHelpers
+        ActiveSupport.on_load(:action_view) do
+          ActionView::Base.send :include, ViewHelpers
+        end
       end
     end
   end
